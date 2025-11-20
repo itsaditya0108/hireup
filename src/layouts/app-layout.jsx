@@ -3,7 +3,7 @@ import Header from "../components/header"
 
 const AppLayout = () => {
     return (
-        <div className="relative min-h-screen px-6">
+        <div className="relative min-h-screen px-2">
             <div className="grid-background fixed top-0 left-0 w-full h-full -z-10"></div>
 
             <main className="min-h-screen container mx-auto px-4">
