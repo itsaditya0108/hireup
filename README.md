@@ -2,7 +2,7 @@
 
 HireUp is a full-stack job portal built with **React 19, Vite, Supabase, and Clerk authentication**. It connects job seekers with employers, providing a seamless platform for job search, applications, and recruitment.
 
-**🌐 Live Demo:** [https://hireup-seven.vercel.app]([https://your-deploy-link.com](https://hireup-seven.vercel.app/))
+**🌐 Live Demo:** [https://hireup-seven.vercel.app](https://hireup-seven.vercel.app/jobs)
 
 ---
 
@@ -131,7 +131,7 @@ You can deploy the app using platforms like **Vercel** or **Netlify**:
 3. Set environment variables in your deployment platform
 4. Deploy and enjoy the live app
 
-**🌐 Live App:** [https://your-deploy-link.com](https://your-deploy-link.com)
+**🌐 Live App:** [Click here ](https://hireup-seven.vercel.app/)
 
 ---
 
