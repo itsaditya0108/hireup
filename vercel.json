@@ -4,20 +4,5 @@
             "source": "/(.*)",
             "destination": "/"
         }
-    ],
-    "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Set-Cookie",
-                    "value": "__clerk_db_jwt=; Path=/; HttpOnly; Secure; SameSite=Lax"
-                },
-                {
-                    "key": "Set-Cookie",
-                    "value": "__clerk_db_session=; Path=/; HttpOnly; Secure; SameSite=Lax"
-                }
-            ]
-        }
     ]
 }
