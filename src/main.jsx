@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { shadesOfPurple } from "@clerk/themes";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
 
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       appearance={{ baseTheme: shadesOfPurple }}
       afterSignOutUrl="/"
     >
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ClerkProvider>
   </React.StrictMode>
 );
