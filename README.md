@@ -159,7 +159,3 @@ This project is licensed under the **ISC License**.
 GitHub: [https://github.com/itsaditya0108](https://github.com/itsaditya0108)
 
 ---
-
-If you want, I can also **add a small badge section** at the top with GitHub stars, license, and live demo — it looks very professional and catches attention.
-
-Do you want me to do that?
