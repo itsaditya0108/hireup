@@ -1,69 +1,84 @@
-import { Button } from "@/components/ui/button";
-import { useUser } from "@clerk/clerk-react";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BarLoader } from "react-spinners";
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from "./layouts/app-layout";
+import LandingPage from "./pages/landing";
+import Onboarding from "./pages/onboarding";
+import JobListing from "./pages/job-listing";
+import JobPage from "./pages/job";
+import PostJob from "./pages/post-job";
+import SaveJob from "./pages/saved-job";
+import MyJob from "./pages/my-job";
+import { ThemeProvider } from "./components/theme-provider";
+import ProtectedRoute from "./components/protected-route";
 
-const Onboarding = () => {
-  const { user, isLoaded } = useUser();
-  const navigate = useNavigate();
-  const [updatingRole, setUpdatingRole] = useState(false);
+import "./App.css";
 
-  const handleRoleSelection = async (role) => {
-    try {
-      setUpdatingRole(true);
-      await user.update({ publicMetadata: { role } });
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <LandingPage />,
+      },
+      {
+        path: "/onboarding",
+        element: (
+          <ProtectedRoute>
+            <Onboarding />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/jobs",
+        element: (
+          <ProtectedRoute>
+            <JobListing />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/post-job",
+        element: (
+          <ProtectedRoute>
+            <PostJob />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/my-jobs",
+        element: (
+          <ProtectedRoute>
+            <MyJob />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/saved-jobs",
+        element: (
+          <ProtectedRoute>
+            <SaveJob />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/job/:id",
+        element: (
+          <ProtectedRoute>
+            <JobPage />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
 
-      // Wait for session to update before navigating
-      setTimeout(() => {
-        navigate(role === "recruiter" ? "/post-job" : "/jobs", { replace: true });
-      }, 1000);
-    } catch (err) {
-      console.error("Error updating role:", err);
-      setUpdatingRole(false);
-    }
-  };
-
-  useEffect(() => {
-    if (isLoaded && user?.publicMetadata?.role) {
-      const role = user.publicMetadata.role;
-      navigate(role === "recruiter" ? "/post-job" : "/jobs", { replace: true });
-    }
-  }, [isLoaded, user?.publicMetadata?.role, navigate]);
-
-  if (!isLoaded || updatingRole) {
-    return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
-  }
-
-  if (user?.publicMetadata?.role) {
-    return null;
-  }
-
+function App() {
   return (
-    <div className="flex flex-col items-center justify-center mt-32">
-      <h2 className="gradient-title font-extrabold text-7xl sm:text-8xl tracking-tighter">
-        I am a ..
-      </h2>
-      <div className="mt-16 grid grid-cols-2 gap-4 w-full md:px-40">
-        <Button
-          variant="blue"
-          className="h-36 text-2xl"
-          onClick={() => handleRoleSelection("candidate")}
-          disabled={updatingRole}
-        >
-          Candidate
-        </Button>
-        <Button
-          variant="destructive"
-          className="h-36 text-2xl"
-          onClick={() => handleRoleSelection("recruiter")}
-          disabled={updatingRole}
-        >
-          Recruiter
-        </Button>
-      </div>
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
-};
+}
 
-export default Onboarding;
+export default App;
