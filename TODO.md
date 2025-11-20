@@ -1,0 +1,2 @@
+- [x] Update src/main.jsx to provide proper navigate function using React Router's useNavigate hook
+- [x] Update vercel.json to include headers for Clerk session cookies
