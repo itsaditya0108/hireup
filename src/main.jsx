@@ -14,10 +14,10 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-      publishableKey={PUBLISHABLE_KEY}>
+      appearance={{ baseTheme: dark }}
+      publishableKey={PUBLISHABLE_KEY}
+      navigate={(to) => window.history.pushState(null, '', to)}
+    >
       <App />
     </ClerkProvider>
   </StrictMode>,
