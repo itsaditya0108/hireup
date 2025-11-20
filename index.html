@@ -6,11 +6,25 @@
   <link rel="icon" type="image/svg+xml" href="/hireup-logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hire Up</title>
+
+  <style>
+    body {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+
+  <script>
+    window.addEventListener('load', () => {
+      document.body.style.visibility = 'visible';
+      document.body.style.opacity = '1';
+    });
+  </script>
 </body>
 
 </html>
