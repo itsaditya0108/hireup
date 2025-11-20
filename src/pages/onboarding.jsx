@@ -13,7 +13,7 @@ const Onboarding = () => {
     const handleRoleSelection = async (role) => {
         try {
             setUpdatingRole(true);
-            await user.update({ unsafeMetadata: { role } });
+            await user.update({ publicMetadata: { role } });
 
             // Small delay to ensure Clerk syncs the session
             setTimeout(() => {
@@ -28,8 +28,8 @@ const Onboarding = () => {
 
     // Redirect only if role exists
     useEffect(() => {
-        if (isLoaded && user?.unsafeMetadata?.role) {
-            const role = user.unsafeMetadata.role;
+        if (isLoaded && user?.publicMetadata?.role) {
+            const role = user.publicMetadata.role;
             navigate(role === "recruiter" ? "/post-job" : "/jobs");
         }
     }, [isLoaded, user, navigate]);
@@ -39,7 +39,7 @@ const Onboarding = () => {
     }
 
     // If user has role, return null while redirecting
-    if (user?.unsafeMetadata?.role) return null;
+    if (user?.publicMetadata?.role) return null;
 
     return (
         <div className="flex flex-col items-center justify-center mt-32">
